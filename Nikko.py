@@ -17,7 +17,7 @@ Nikko = Client(
     ":memory:",
     bot_token=bot_token,
     api_id=6,
-    api_hash="dfb0a7155ceb74188c0b17eed578bb4d",
+    api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
 bot_id = int(bot_token.split(":")[0])
