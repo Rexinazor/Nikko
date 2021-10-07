@@ -13,7 +13,7 @@ Just a basic Telegram AI chat bot written in Python using Pyrogram.
 
 ```sh
 $ https://github.com/Rexinazor/Nikko_ChatBot
-$ cd LunaChatBot
+$ cd Nikko_ChatBot
 $ pip3 install -U -r requirements.txt
 $ cp sample_config.py config.py
 ```
@@ -32,7 +32,7 @@ $ python3 luna.py
 
 Follow Installation Guide.
 ```sh
-$ sudo docker build -t luna .
-$ sudo docker run luna
+$ sudo docker build -t Nikko .
+$ sudo docker run Nikko
 ```
 
