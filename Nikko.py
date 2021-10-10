@@ -11,7 +11,7 @@ bot_token= BOT_TOKEN
 
 print("[INFO]: Checking... Your Details")
 
-bot_id = int(bot_token.split(":")[0])
+bot_id = int(bot_token(":")[0])
 arq = None
 
 async def lunaQuery(query: str, user_id: int):
