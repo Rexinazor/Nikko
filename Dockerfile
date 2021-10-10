@@ -13,4 +13,4 @@ COPY . .
 RUN pip3 install -U -r requirements.txt
 
 # Running Nikko
-CMD ["python3","Nikkp.py"]
+CMD ["python3","Nikko.py"]
