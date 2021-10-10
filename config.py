@@ -1,6 +1,6 @@
 import os
-
-from heroku3 import from_key
+import environ
+import from_key
 from pyrogram import Client
 
 API_ID = int(os.environ.get("API_ID", "6"))
