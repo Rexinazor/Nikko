@@ -1,5 +1,4 @@
 import os
-import from_key
 from pyrogram import Client
 
 API_ID = int(os.environ.get("API_ID", "6"))
