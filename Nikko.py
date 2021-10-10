@@ -1,18 +1,26 @@
-print("[INFO]: Importing Your API_ID, API_HASH, BOT_TOKEN")
 import re
-from asyncio import (gather, get_event_loop, sleep)
+import os
+from asyncio import gather, get_event_loop, sleep
 
 from aiohttp import ClientSession
-from pyrogram import (Client, filters, idle)
+from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
 
-from config import bot, BOT_TOKEN, ARQ_API_KEY, ARQ_API_BASE_URL, LANGUAGE
-bot_token= BOT_TOKEN
+is_config = os.path.exists("config.py")
 
-print("[INFO]: Checking... Your Details")
+if is_config:
+    from config import *
+else:
+    from sample_config import *
+
+luna = Client(
+    ":memory:",
+    bot_token=bot_token,
+    api_id=6,
+    api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
+)
 
 bot_id = int(bot_token.split(":")[0])
-print("[INFO]: Code running by Rexinazor")
 arq = None
 
 
@@ -38,9 +46,25 @@ async def type_and_send(message):
     query = message.text.strip()
     await message._client.send_chat_action(chat_id, "typing")
     response, _ = await gather(lunaQuery(query, user_id), sleep(2))
-    if "support" in response:
-        responsee = response.replace("@Hazardbot_Support", "@ZenoByte")
+    await message.reply_text(response)
+    await message._client.send_chat_action(chat_id, "cancel")
 
+
+@luna.on_message(filters.command("repo") & ~filters.edited)
+async def repo(_, message):
+    await message.reply_text(
+        "[GitHub](https://github.com/Rexinazor/Nikko_ChatBot)"
+        + " | [Group](t.me/Hazardbot_Support)",
+        disable_web_page_preview=True,
+    )
+
+
+@luna.on_message(filters.command("help") & ~filters.edited)
+async def start(_, message):
+    await luna.send_chat_action(message.chat.id, "typing")
+    await sleep(2)
+    await message.reply_text("/repo - Get Repo Link")
+    
 async def type_and_send(message):
     chat_id = message.chat.id
     user_id = message.from_user.id if message.from_user else 0
@@ -63,10 +87,10 @@ async def type_and_send(message):
     await message._client.send_chat_action(chat_id, "cancel")
 
 
-@bot.on_message(
+@luna.on_message(
     ~filters.private
     & filters.text
-    & ~filters.command("start")
+    & ~filters.command("help")
     & ~filters.edited,
     group=69,
 )
@@ -79,7 +103,7 @@ async def chat(_, message):
             return
     else:
         match = re.search(
-            "[.|\n]{0,}iris[.|\n]{0,}",
+            "[.|\n]{0,}luna[.|\n]{0,}",
             message.text.strip(),
             flags=re.IGNORECASE,
         )
@@ -88,21 +112,13 @@ async def chat(_, message):
     await type_and_send(message)
 
 
-@bot.on_message(
-    filters.private
-    & ~filters.command("start")
-    & ~filters.edited
+@luna.on_message(
+    filters.private & ~filters.command("help") & ~filters.edited
 )
 async def chatpm(_, message):
     if not message.text:
-        await message.reply_text("LoL Avoiding...")
         return
     await type_and_send(message)
-
-
-@bot.on_message(filters.command("start") & ~filters.edited)
-async def startt(_, message):
-    await message.reply_text("Yo! Am up!(◔◡◔)")
 
 
 async def main():
@@ -110,10 +126,12 @@ async def main():
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
-    await bot.start()
+    await luna.start()
     print(
         """
-Your Nikko Is Deployed Successfully.
+-----------------
+| Nikko Started! |
+-----------------
 """
     )
     await idle()
