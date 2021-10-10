@@ -1,5 +1,4 @@
 import os
-import environ
 import from_key
 from pyrogram import Client
 
