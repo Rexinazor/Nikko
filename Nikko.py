@@ -9,9 +9,7 @@ from Python_ARQ import ARQ
 from config import bot, BOT_TOKEN, ARQ_API_KEY, ARQ_API_BASE_URL, LANGUAGE
 bot_token= BOT_TOKEN
 
-print("[INFO]: Checking... Your Details")
-
-bot_id = int(bot_token(":")[0])
+bot_id = int(bot_token.split(":")[0])
 arq = None
 
 async def lunaQuery(query: str, user_id: int):
