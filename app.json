@@ -1,0 +1,22 @@
+{
+  "name": "TIANA",
+  "description": "Open-Source bot for Aichat bot",
+  "logo": "https://telegra.ph/file/bcd7b3dec21d1c2b2583a.png",
+  "keywords": ["aichatbot", "chatbot", "telegram"],
+  "repository":"https://github.com/PoisonBot/Chat-Bot",
+  "buildpacks": [{
+  "url": "heroku/python"
+  }],
+  "formation": {
+  "worker": {
+  "quantity": 1,
+  "size": "free"
+        }
+    },
+  "env": {
+    "BOT_TOKEN": {
+      "description": "A Bot Token from @BotFather",
+      "required": true
+    }
+  }
+}
