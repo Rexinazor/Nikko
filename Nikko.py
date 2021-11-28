@@ -57,13 +57,7 @@ async def repo(_, message):
         disable_web_page_preview=True,
     )
     
-    @luna.on_message(filters.command("help") & ~filters.edited)
-async def start(_, message):
-    await luna.send_chat_action(message.chat.id, "typing")
-    await sleep(2)
-    await message.reply_text("/repo - Get Repo Link")
-
-async def type_and_send(message):
+    async def type_and_send(message):
     chat_id = message.chat.id
     user_id = message.from_user.id if message.from_user else 0
     query = message.text.strip()
@@ -83,6 +77,13 @@ async def type_and_send(message):
         responsess2 = responsess
     await message.reply_text(responsess2)
     await message._client.send_chat_action(chat_id, "cancel")
+    
+    
+    @luna.on_message(filters.command("help") & ~filters.edited)
+async def start(_, message):
+    await luna.send_chat_action(message.chat.id, "typing")
+    await sleep(2)
+    await message.reply_text("/repo - Get Repo Link")
 
 
 @luna.on_message(
