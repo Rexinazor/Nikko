@@ -53,7 +53,7 @@ async def type_and_send(message):
 async def repo(_, message):
     await message.reply_text(
         "[GitHub](https://github.com/Rexinazor/Nikko_ChatBot)"
-        + " | [Group](t.me/Hazardbot_Support)",
+        + " | [Owner](t.me/ZenoByte)",
         disable_web_page_preview=True,
     )
 
