@@ -49,7 +49,6 @@ async def type_and_send(message):
     await message._client.send_chat_action(chat_id, "cancel")
     
     async def type_and_send(message):
-    chat_id = message.chat.id
     user_id = message.from_user.id if message.from_user else 0
     query = message.text.strip()
     await message._client.send_chat_action(chat_id, "typing")
