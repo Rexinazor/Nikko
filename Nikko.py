@@ -20,6 +20,7 @@ luna = Client(
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
+bot_id = int(bot_token.split(":")[0])
 arq = None
 
 
@@ -37,6 +38,7 @@ async def lunaQuery(query: str, user_id: int):
             await arq.translate(resp, LANGUAGE)
         ).result.translatedText
     )
+
 
 async def type_and_send(message):
     chat_id = message.chat.id
@@ -56,7 +58,8 @@ async def repo(_, message):
         disable_web_page_preview=True,
     )
     
-    @luna.on_message(filters.command("help") & ~filters.edited)
+    
+@luna.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
     await sleep(2)
