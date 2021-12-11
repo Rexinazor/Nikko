@@ -113,22 +113,6 @@ async def chatpm(_, message):
         return
     await type_and_send(message)
     
-@luna.on_message(
-    filters.private | ~filters.group
-    & ~filters.command("start")
-    & ~filters.edited
-)
-async def chatpm(_, message):
-    if not message.text:
-        await message.reply_text("Ufff... Ignoring ....👻")
-        return
-    await type_and_send(message)
-
-
-@luna.on_message(filters.command("start") & ~filters.edited)
-async def startt(_, message):
-    await message.reply_text("Hey! Its Nikko a Ai Enabled Chatbot")
-
 
 async def main():
     global arq
