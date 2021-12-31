@@ -103,8 +103,7 @@ async def chat(_, message):
         if not match:
             return
     await type_and_send(message)
-
-    
+  
     
 @luna.on_message(
     filters.private & ~filters.command("help") & ~filters.edited
