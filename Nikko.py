@@ -85,7 +85,7 @@ async def start(_, message):
     & filters.text
     & ~filters.command("help")
     & ~filters.edited,
-    group=89,
+    group=69,
 )
 async def chat(_, message):
     if message.reply_to_message:
