@@ -15,12 +15,12 @@ else:
 
 luna = Client(
     ":memory:",
-    bot_token="2003975240:AAGNxWqYpq6BoZNxZyzs4f1v2l34rxvRA9s",
+    bot_token=bot_token,
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
 
-
+bot_id = int(bot_token.split(":")[0])
 arq = None
 
 
@@ -44,31 +44,17 @@ async def type_and_send(message):
     chat_id = message.chat.id
     user_id = message.from_user.id if message.from_user else 0
     query = message.text.strip()
-    await message._client.send_chat_action(chat_id "typing")
+    await message._client.send_chat_action(chat_id, "typing")
     response, _ = await gather(lunaQuery(query, user_id), sleep(2))
     await message.reply_text(response)
-    
-    if "Luna" in response:
-        responsee = response.replace("Luna", "Nikko")
-    else:
-        responsee = response
-    if "Aco" in responsee:
-        responsess = responsee.replace("Aco", "Nikko")
-    else:
-        responsess = responsee
-    if "Who is Nikko" in responsess:
-        responsess2 = responsess.replace("Who is ChatBot", "Me（*＾-＾*）")
-    else:
-        responsess2 = responsess
-    await message.reply_text(responsess2)
     await message._client.send_chat_action(chat_id, "cancel")
-    
-    
+
+
 @luna.on_message(filters.command("repo") & ~filters.edited)
 async def repo(_, message):
     await message.reply_text(
-         "[GitHub](https://github.com/Rexinazor/Nikko_ChatBot)"
-        + " | [Owner](t.me/ZenoByte)",
+        "[GitHub](https://github.com/Rexinazor/Nikko_ChatBot)"
+        + " | [Owner](t.me/zenobyte)",
         disable_web_page_preview=True,
     )
 
@@ -103,8 +89,8 @@ async def chat(_, message):
         if not match:
             return
     await type_and_send(message)
-  
-    
+
+
 @luna.on_message(
     filters.private & ~filters.command("help") & ~filters.edited
 )
@@ -112,7 +98,7 @@ async def chatpm(_, message):
     if not message.text:
         return
     await type_and_send(message)
-    
+
 
 async def main():
     global arq
