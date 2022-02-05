@@ -114,7 +114,7 @@ async def chatpm(_, message):
 async def main():
     global arq
     session = ClientSession()
-    arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
+    arq = ARQ("https://thearq.tech", "PCNOPF-CUKEFI-FINVJX-XSSOZZ-ARQ", session)
 
     await luna.start()
     print(
