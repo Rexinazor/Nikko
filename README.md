@@ -12,8 +12,8 @@ Just a basic Telegram AI chat bot written in Python using Pyrogram.
 ## Installation
 
 ```sh
-$ https://github.com/Rexinazor/Nikko_ChatBot
-$ cd Nikko_ChatBot
+$ https://github.com/Rexinazor/Nikko
+$ cd Nikko
 $ pip3 install -U -r requirements.txt
 $ cp sample_config.py config.py
 ```
@@ -25,7 +25,7 @@ $ python3 Nikko.py
 
 ## Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Rexinazor/Nikko_ChatBot/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Rexinazor/Nikko/tree/master)
 
 
 ## Docker
